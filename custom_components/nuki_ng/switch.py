@@ -21,8 +21,9 @@ async def async_setup_entry(
     coordinator = hass.data[DOMAIN][entry.entry_id]
 
     for dev_id in coordinator.data.get("devices", {}):
-        for auth_id in coordinator.device_data(dev_id).get("web_auth", {}):
-            entities.append(AuthEntry(coordinator, dev_id, auth_id))
+        
+        #for auth_id in coordinator.device_data(dev_id).get("web_auth", {}):
+        #    entities.append(AuthEntry(coordinator, dev_id, auth_id))
         if coordinator.info_field(dev_id, None, "advancedConfig", "autoLock") != None:
             entities.append(LockAutoLock(coordinator, dev_id))
         if coordinator.info_field(dev_id, -1, "openerAdvancedConfig", "doorbellSuppression")  >= 0:
